@@ -9,19 +9,12 @@ RUN apt-get update && \
 
 RUN useradd -m syncthing
 
-RUN VERSION=`curl -s https://api.github.com/repos/syncthing/syncthing/releases/latest | jq -r '.tag_name'` && \
-    mkdir -p /go/src/github.com/syncthing && \
-    cd /go/src/github.com/syncthing && \
-    git clone https://github.com/syncthing/syncthing.git && \
-    cd syncthing && \
-    git checkout $VERSION && \
-    go run build.go && \
-    mv bin/syncthing /home/syncthing/syncthing && \
-    chown syncthing:syncthing /home/syncthing/syncthing && \
-    rm -rf /go/src/github.com/syncthing
-
+ADD build.sh /build.sh
 ADD start.sh /start.sh
-RUN chmod +x /start.sh
+RUN chmod +x /start.sh /build.sh
+
+ARG ROLE
+RUN /build.sh ${ROLE}
 
 WORKDIR /home/syncthing
 
@@ -29,4 +22,4 @@ VOLUME ["/home/syncthing/.config/syncthing", "/home/syncthing/Sync"]
 
 EXPOSE 8384 22000 21027/udp
 
-CMD ["/start.sh"]
+CMD ["/start.sh ${ROLE}"]
