@@ -7,19 +7,17 @@ RUN apt-get update && \
     apt-get install -y git curl jq xmlstarlet && \
     rm -rf /var/lib/apt/lists/*
 
-RUN useradd -m syncthing
-
 ADD build.sh /build.sh
-ADD start.sh /start.sh
-RUN chmod +x /start.sh /build.sh
+RUN chmod +x /build.sh
 
 ARG ROLE
-RUN /build.sh ${ROLE}
+RUN /build.sh
 
-WORKDIR /home/syncthing
+ADD start.sh /start.sh
+RUN chmod +x /start.sh
 
-VOLUME ["/home/syncthing/.config/syncthing", "/home/syncthing/Sync"]
+VOLUME ["/home/.config/syncthing"]
 
 EXPOSE 8384 22000 21027/udp
 
-CMD ["/start.sh ${ROLE}"]
+CMD ["/start.sh", "${ROLE}"]

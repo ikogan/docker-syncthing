@@ -2,7 +2,9 @@
 
 set -e
 
-CONFIG_FOLDER="~/.config/syncthing"
+export HOME="/home"
+
+CONFIG_FOLDER="/home/.config/syncthing"
 CONFIG_FILE="$CONFIG_FOLDER/config.xml"
 
 if [ ! -f "$CONFIG_FILE" ]; then
@@ -12,7 +14,7 @@ fi
 xmlstarlet ed -L -u "/configuration/gui/address" -v "0.0.0.0:8384" "$CONFIG_FILE"
 
 if [[ -z "${ROLE}" || "${ROLE}" == "sync" ]]; then
-    COMMAND="syncthing"
+    COMMAND="syncthing -no-browser"
 elif [[ "${ROLE}" == "relay" ]]; then
     COMMAND="strelaysrv -keys /etc/relaysrv"
 elif [[ "${ROLE}" == "discovery" ]]; then
