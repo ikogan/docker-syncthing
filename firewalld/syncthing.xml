@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<service>
+  <short>Syncthing</short>
+  <description>Opens up syncthing protocol port for Syncronization</description>
+  <port protocol="tcp" port="22100-22200"/>
+</service>

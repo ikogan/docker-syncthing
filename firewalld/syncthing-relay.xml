@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<service>
+  <short>Syncthing Relay</short>
+  <description>Opens up status and relay ports (22070 and 22067) for Syncthing Relay</description>
+  <port protocol="tcp" port="22067"/>
+  <port protocol="tcp" port="22070"/>
+</service>

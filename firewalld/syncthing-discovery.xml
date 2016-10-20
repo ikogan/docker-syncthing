@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<service>
+  <short>Syncthing Discovery</short>
+  <description>Opens up HTTP port (28443) for Syncthing Discovery Server</description>
+  <port protocol="tcp" port="28443"/>
+</service>

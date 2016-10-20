@@ -1,23 +1,39 @@
-FROM golang:1.6.2
-MAINTAINER Ilya Stepanov <dev@ilyastepanov.com>
+FROM golang:1.7.1
+MAINTAINER Ilya Kogan <ikogan@flarecode.com>
 
+ENV GOSU_VERSION 1.9
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update && \
-    apt-get install -y git curl jq xmlstarlet && \
+    apt-get install -y git curl jq xmlstarlet wget ca-certificates && \
     rm -rf /var/lib/apt/lists/*
 
-ADD build.sh /build.sh
+RUN dpkgArch="$(dpkg --print-architecture | awk -F- '{ print $NF }')" \
+    && wget -O /usr/local/bin/gosu "https://github.com/tianon/gosu/releases/download/$GOSU_VERSION/gosu-$dpkgArch" \
+    && wget -O /usr/local/bin/gosu.asc "https://github.com/tianon/gosu/releases/download/$GOSU_VERSION/gosu-$dpkgArch.asc" \
+    && export GNUPGHOME="$(mktemp -d)" \
+    && gpg --keyserver ha.pool.sks-keyservers.net --recv-keys B42F6819007F00F88E364FD4036A9C25BF357DD4 \
+    && gpg --batch --verify /usr/local/bin/gosu.asc /usr/local/bin/gosu \
+    && rm -r "$GNUPGHOME" /usr/local/bin/gosu.asc \
+    && chmod +x /usr/local/bin/gosu \
+    && gosu nobody true
+
+ADD docker/build.sh /build.sh
 RUN chmod +x /build.sh
 
-ARG ROLE
-RUN /build.sh
-
-ADD start.sh /start.sh
+ADD docker/start.sh /start.sh
 RUN chmod +x /start.sh
 
-VOLUME ["/home/.config/syncthing"]
+ARG SYNCTHING_VERSION
+ARG SYNCTHING_INOTIFY_VERSION
 
-EXPOSE 8384 22000 21027/udp
+ENV SYNCTHING_VERSION=${SYNCTHING_VERSION}
+ENV SYNCTHING_INOTIFY_VERSION=${SYNCTHING_INOTIFY_VERSION}
 
-CMD ["/start.sh", "${ROLE}"]
+RUN /build.sh
+
+VOLUME ["/home/syncthing"]
+
+EXPOSE 8384 8443 22000 21027/udp 22067 22070
+
+ENTRYPOINT ["/start.sh"]
