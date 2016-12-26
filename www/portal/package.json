@@ -1,0 +1,19 @@
+{
+  "name": "syncthing-actication",
+  "version": "1.0.0",
+  "description": "Syncthing Activation Application",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ilya Kogan <ikogan@mythicnet.org>",
+  "license": "ISC",
+  "dependencies": {
+    "angular": "^1.5.7",
+    "angular-animate": "^1.5.7",
+    "angular-aria": "^1.5.7",
+    "angular-route": "^1.5.7",
+    "angular-sanitize": "^1.5.7",
+    "lodash": "^4.13.1",
+    "patternfly": "^3.8.1"
+  }
+}

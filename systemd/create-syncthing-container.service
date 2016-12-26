@@ -1,0 +1,21 @@
+[Unit]
+Description=Syncthing Container Creation API
+Requires=local-fs.target docker.service
+
+[Install]
+WantedBy=multi-user.target
+
+[Service]
+Type=simple
+
+# NOTE: Make sure you set the proper port here and in the httpd
+# configuration. TODO: Externalize this into a config file.
+ExecStart=/opt/scripts/create-syncthing-container.py --api-port=8082
+Restart=on-failure
+
+# TODO: Don't run this as root, it really doesn't need it.
+User=root
+Group=root
+
+SyslogIdentifier=SyncThing
+SyslogFacility=daemon

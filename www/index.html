@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html ng-app='gaea' ng-controller='MainController as controller' class='layout-pf-fixed'>
+    <head>
+        <base href='/syncthing/'>
+        <meta charset='UTF-8'>
+        <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+        <title>Activate Syncthing</title>
+
+        <link rel='stylesheet' type='text/css' href='/portal//node_modules/angular/angular-csp.css' />
+        <link rel='stylesheet' type='text/css' href='/portal/node_modules/patternfly/dist/css/patternfly.min.css' />
+        <link rel='stylesheet' type='text/css' href='/portal/node_modules/patternfly/dist/css/patternfly-additions.min.css' />
+        <link rel='stylesheet' type='text/css' href='/portal/node_modules/patternfly/node_modules/font-awesome/css/font-awesome.min.css' />
+
+        <link rel='stylesheet' type='text/css' href='/portal/styles/main.css' />
+    </head>
+    <body ng-cloak>
+        <div class="blank-slate-pf" ng-init="controller.init()">
+            <div class="blank-slate-pf-icon">
+                <span class="pficon pficon-topology" style='font-size: 100px;'></span>
+            </div>
+            <div ng-if='!controller.error'>
+                <h1>Initializing Syncthing...</h1>
+                <p>Please wait a moment while a personalized Syncthing container is prepared for you.</p>
+                <div class="spinner spinner-lg"></div>
+            </div>
+            <div ng-if='controller.error'>
+                <p>Error: {{ controller.error }}</p>
+            </div>
+        </div>
+    </body>
+
+    <script src='/portal/node_modules/patternfly/node_modules/jquery/dist/jquery.min.js'></script>
+    <script src='/portal/node_modules/patternfly/node_modules/bootstrap/dist/js/bootstrap.min.js'></script>
+    <script src='/portal/node_modules/patternfly/node_modules/jquery-match-height/dist/jquery.matchHeight-min.js'></script>
+    <script src='/portal/node_modules/patternfly/dist/js/patternfly.min.js'></script>
+
+    <script src='/portal/node_modules/lodash/lodash.min.js'></script>
+    <script src='/portal/node_modules/angular/angular.min.js'></script>
+    <script src='/portal/node_modules/angular-animate/angular-animate.min.js'></script>
+    <script src='/portal/node_modules/angular-aria/angular-aria.min.js'></script>
+    <script src='/portal/node_modules/angular-sanitize/angular-sanitize.min.js'></script>
+
+    <script src='app.js'></script>
+</html>
