@@ -13,28 +13,7 @@ infrastructure to provide self-service (and managed) container creation for user
 > Note: While `syncthing-inotify` is built and included in the image, it is not
 > used by the scripts at the moment due to various issues encountered.
 
-## Contents
-<!-- vscode-markdown-toc -->
-* 1. [Why?](#Why)
-* 2. [What](#What)
-* 3. [Architecture](#Architecture)
-* 4. [Compatibility](#Compatibility)
-* 5. [Installation/Configuration](#InstallationConfiguration)
-    * 5.1. [Docker](#Docker)
-        * 5.1.1. [Syncthing Versions](#SyncthingVersions)
-    * 5.2. [`firewalld`](#firewalld)
-    * 5.3. [`systemd`](#systemd)
-    * 5.4. [`httpd`](#httpd)
-    * 5.5. [Web UI](#WebUI)
-* 6. [Attribution](#Attribution)
-
-<!-- vscode-markdown-toc-config
-    numbering=true
-    autoSave=true
-    /vscode-markdown-toc-config -->
-<!-- /vscode-markdown-toc -->
-
-##  1. <a name='Why'></a>Why?
+##  Why?
 
 Syncthing is a pretty awesome tool for synchronizing content across devices but it's primarily
 designed for devices owned by a single user. Each syncthing instance runs on several ports
@@ -43,7 +22,7 @@ standard port. While these ports can be changed, managing the list of ports on a
 is cumbersome at best. Additionally, Syncthing provides only basic authentication support, none
 of which can be managed centrally.
 
-##  2. <a name='What'></a>What
+##  What
 
 This repository includes several components that make managing Syncthing
 in a centralized environment possible/easier:
@@ -63,12 +42,12 @@ infrastructure. Also, this is pretty rough and probably shouldn't be
 used in production without a lot of analysis. It's mostly just a pile
 of pieces connected together with duct tape.
 
-##  3. <a name='Architecture'></a>Architecture
+##  Architecture
 
 This architecture relies heavily on the way Apache's configuration
 works, specifically, that `ProxyPass` entries are evaluated in order.
 
-![Architecture Diagram](syncthing-diagram.png)
+![Architecture Diagram](https://github.com/ikogan/docker-syncthing/raw/master/syncthing-diagram.png)
 
 In the above, the user will attempt to go to a core syncthing URL,
 say `https://my.domain.com/syncthing`. `httpd` will recognize that 
@@ -96,7 +75,7 @@ configuration will now exist, and Syncthing will load.
 > access each other's Syncthing containers by altering the per-user
 > config files to include additional `Require user` directives.
 
-##  4. <a name='Compatibility'></a>Compatibility
+##  4. Compatibility
 
 This whole thing was built on Fedora 23 but should be compatible
 with virtually any `systemd` based distribution (or others, if you
@@ -122,13 +101,13 @@ The httpd configuration relies on
 SAML 2.0 authentication. A SAML 2.0 IdP is not provided, you'll need
 to adapt the httpd configuration to suit your installation.
 
-##  5. <a name='InstallationConfiguration'></a>Installation/Configuration
+##  5. Installation/Configuration
 
 There are no general instructions as this is more a collection of
 pieces rather than a complete solution. However, relevant information
 about the individual pieces is provided.
 
-###  5.1. <a name='Docker'></a>Docker
+###  5.1. Docker
 
 One Docker image is able to handle all 3 functions, relaying, discovery,
 and the Syncthing client. The `start.sh` script handles what to start
@@ -179,7 +158,7 @@ See the `create_container` method in `create-syncthing-container.py`
 for details on creating a custom network for all of these containers
 to interact and to allow each user to be assigned a specific IP address.
 
-####  5.1.1. <a name='SyncthingVersions'></a>Syncthing Versions
+#### Syncthing Versions
 
 When building this container, the following arguments can be used to
 force a particular version (the latest is otherwise used):
@@ -187,26 +166,26 @@ force a particular version (the latest is otherwise used):
 - `SYNCTHING_VERSION`
 - `SYNCTHIGN_INOTIFY_VERSION`
 
-###  5.2. <a name='firewalld'></a>`firewalld`
+### `firewalld`
 
 If your system has `firewalld`, it may need to be configured to allow
 this traffic. Service definitions are available in the `firewalld`
 directory.
 
-###  5.3. <a name='systemd'></a>`systemd`
+### `systemd`
 
 In order to start the container creation API, `systemd` is leveraged
 for it's ability to not only start the server, but monitor and ensure
 that it's always running.
 
-###  5.4. <a name='httpd'></a>`httpd`
+### `httpd`
 
 The `httpd` directory contains the configuration used to implement the
 architecture. It'll likely need changed for your particular environment.
 The various decisions are documented within the configuration. Improvements
 and further sample configurations would be great.
 
-###  5.5. <a name='WebUI'></a>Web UI
+### Web UI
 
 The web UI has 4 main purposes:
 
@@ -218,7 +197,7 @@ The web UI has 4 main purposes:
 Using AngularJS and PatternFly is probably overkill for this but it
 fit with the rest of the system's aesthetic and was easy to implement.
 
-##  6. <a name='Attribution'></a>Attribution
+## Attribution
 
 This project depends on a lot of awesome technologies without which
 it would be completely impossible:
