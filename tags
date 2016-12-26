@@ -1,0 +1,42 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+ApacheConfigurationFailedError	create-syncthing-container.py	/^class ApacheConfigurationFailedError(Exception):$/;"	kind:class	line:38
+ContainerAlreadyExistsError	create-syncthing-container.py	/^class ContainerAlreadyExistsError(Exception):$/;"	kind:class	line:26
+Docker	create-syncthing-container.py	/^import docker as Docker$/;"	kind:namespace	line:17
+Flask	create-syncthing-container.py	/^from flask import Flask, jsonify, request$/;"	kind:namespace	line:20
+IPRangeExhaustedError	create-syncthing-container.py	/^class IPRangeExhaustedError(Exception):$/;"	kind:class	line:32
+SyncthingOptions	create-syncthing-container.py	/^class SyncthingOptions(object):$/;"	kind:class	line:42
+SysLogHandler	create-syncthing-container.py	/^from logging.handlers import SysLogHandler$/;"	kind:namespace	line:21
+__init__	create-syncthing-container.py	/^    def __init__(self):$/;"	kind:member	line:33
+__init__	create-syncthing-container.py	/^    def __init__(self):$/;"	kind:member	line:44
+__init__	create-syncthing-container.py	/^    def __init__(self, user):$/;"	kind:member	line:27
+action	create-syncthing-container.py	/^                        action='store',$/;"	kind:variable	line:292
+action	create-syncthing-container.py	/^                        action='store_true',$/;"	kind:variable	line:286
+action	create-syncthing-container.py	/^                        action='store_true',$/;"	kind:variable	line:296
+api	create-syncthing-container.py	/^    def api():$/;"	kind:function	line:178
+api	create-syncthing-container.py	/^def api(args):$/;"	kind:function	line:172
+application	create-syncthing-container.py	/^def application(environ, start_response):$/;"	kind:function	line:221
+argparse	create-syncthing-container.py	/^import argparse$/;"	kind:namespace	line:16
+args	create-syncthing-container.py	/^    args = SyncthingOptions()$/;"	kind:variable	line:305
+create-syncthing-container.py	create-syncthing-container.py	1;"	kind:file	line:1
+create_container	create-syncthing-container.py	/^def create_container(args):$/;"	kind:function	line:57
+dest	create-syncthing-container.py	/^                        dest='discovery_container',$/;"	kind:variable	line:291
+getpwnam	create-syncthing-container.py	/^from pwd import getpwnam$/;"	kind:namespace	line:18
+help	create-syncthing-container.py	/^                        help='Container hosting the discovery server ' +$/;"	kind:variable	line:293
+help	create-syncthing-container.py	/^                        help='Disable relaying entirely.')$/;"	kind:variable	line:287
+help	create-syncthing-container.py	/^                        help='Discovery server address.')$/;"	kind:variable	line:289
+help	create-syncthing-container.py	/^                        help='Expose a range of ports for the ST ' +$/;"	kind:variable	line:299
+help	create-syncthing-container.py	/^                        help='Relay server address.')$/;"	kind:variable	line:280
+help	create-syncthing-container.py	/^                        help='Skip creating an httpd configuration.')$/;"	kind:variable	line:297
+help	create-syncthing-container.py	/^                        help='Start an API server that can create containers.')$/;"	kind:variable	line:302
+jsonify	create-syncthing-container.py	/^from flask import Flask, jsonify, request$/;"	kind:namespace	line:20
+os	create-syncthing-container.py	/^import os$/;"	kind:namespace	line:14
+parser	create-syncthing-container.py	/^    parser = argparse.ArgumentParser(description='Create a Syncthing ' +$/;"	kind:variable	line:274
+request	create-syncthing-container.py	/^from flask import Flask, jsonify, request$/;"	kind:namespace	line:20
+sys	create-syncthing-container.py	/^import sys$/;"	kind:namespace	line:15
+syslog	create-syncthing-container.py	/^from syslog import syslog$/;"	kind:namespace	line:19
+truthy	create-syncthing-container.py	/^truthy = ['true', 'yes']$/;"	kind:variable	line:23
