@@ -1,3 +1,6 @@
+[![](https://images.microbadger.com/badges/image/ikogan/syncthing.svg)](https://microbadger.com/images/ikogan/syncthing "Get your own image badge on microbadger.com")
+[![](https://images.microbadger.com/badges/version/ikogan/syncthing.svg)](https://microbadger.com/images/ikogan/syncthing "Get your own version badge on microbadger.com")
+
 ikogan/syncthing
 ===================
 
