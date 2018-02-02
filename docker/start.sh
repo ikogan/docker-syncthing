@@ -9,7 +9,11 @@ else
 fi
 
 if [[ -z "${ROLE}" || "${ROLE}" == "sync" ]]; then
-    export HOME="/home/syncthing"
+    if [[ -z "${SYNCTHING_HOME}" ]]; then
+        export HOME="/home/syncthing"
+    else
+        export HOME="${SYNCTHING_HOME}"
+    fi
 
     if [[ -z "${1}" ]]; then
         echo "Please specify user to run as with 'user:group' as first argument." >&2; exit 1

@@ -1,5 +1,5 @@
-FROM golang:1.7.1
-MAINTAINER Ilya Kogan <ikogan@flarecode.com>
+FROM golang:1.9
+MAINTAINER Ilya Kogan <ikogan@mythicnet.org>
 
 ENV GOSU_VERSION 1.9
 ENV DEBIAN_FRONTEND noninteractive

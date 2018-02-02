@@ -1,7 +1,11 @@
 #!/bin/bash
-set  -e
+set -e
 
-VERSION=${SYNCTHING_VERSION} || `curl -s https://api.github.com/repos/syncthing/syncthing/releases/latest | jq -r '.tag_name'`
+if [[ -z "${SYNCTHING_VERSION}" ]]; then
+    VERSION=`curl -s https://api.github.com/repos/syncthing/syncthing/releases/latest | jq -r '.tag_name'`
+else
+    VERSION=${SYNCTHING_VERSION}
+fi
 
 mkdir -p /go/src/github.com/syncthing
 cd /go/src/github.com/syncthing
@@ -12,7 +16,11 @@ go run build.go
 mkdir -p /opt/syncthing
 mv bin/* /opt/syncthing
 
-VERSION=${SYNCTHING_INOTIFY_VERSION} || `curl -s https://api.github.com/repos/syncthing/syncthing-inotify/releases/latest | jq -r '.tag_name'`
+if [[ -z "${SYNCTHING_INOTIFY_VERSION}" ]]; then
+    VERSION=`curl -s https://api.github.com/repos/syncthing/syncthing-inotify/releases/latest | jq -r '.tag_name'`
+else
+    VERSION=${SYNCTHING_INOTIFY_VERSION}
+fi
 
 mkdir -p /go/src/github.com/syncthing-inotify
 cd /go/src/github.com/syncthing-inotify
